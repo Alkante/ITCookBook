@@ -39,7 +39,9 @@ Options utilisées :
 avec snmpwalk vérifier le nom exact de l'interface (ça dépend des constructeurs):
 
 `snmpwalk -v 2c -c SNMP_COMMUNITY IP_ADDRESS 1.3.6.1.2.1.2.2.1.2`
+
 ou
+
 `snmpwalk -v 2c -c SNMP_COMMUNITY IP_ADDRESS IF-MIB::ifDescr`
 
 
@@ -105,6 +107,7 @@ Le lancer en tant que centreon-engine pour éviter les soucis de droits Unix sur
 Adapter les options (-T, -o ifName, ...) suivant le type de matériel et d'interface comme indiqué plus haut
 
 `sudo su centreon-engine -`
+
 `/usr/lib/nagios/plugins/check_centreon_snmp_traffic_nagvis -H IP_ADDRESS -v 2 -C SNMP_COMMUNITY --64-bits -no ifName -ri "0/24" -w 80 -c 90`
 
 
