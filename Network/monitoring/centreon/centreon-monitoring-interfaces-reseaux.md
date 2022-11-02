@@ -123,11 +123,11 @@ Cliquer sur la map du côté de la source (device dont on polle l'interface)
 Cliquer sur la map du côté destination (device connecté au premier)
 
 Dans la boite de dialogue :
-Onglet General : choisir le host et le service centreon
-Onglet Appearance : choisir **view_type = line** et choisir le line_type parmis les 3 suivants :
----%---><---%--- : affiche le pourcentage d'utilisation du lien
----BW--><---BW-- : affiche la bande passante utilisée en bps
----%+BW><---%+BW : affiche le pourcentage d'utilisation et la bande passa,te
+- Onglet General : choisir le host et le service centreon
+- Onglet Appearance : choisir **view_type = line** et choisir le line_type parmis les 3 suivants :
+    `---%---><---%--- `: affiche le pourcentage d'utilisation du lien
+    `---BW--><---BW--` : affiche la bande passante utilisée en bps
+    `---%+BW><---%+BW `: affiche le pourcentage d'utilisation et la bande passante
 
 Définir les options suivantes :
 - line_label_show : yes
