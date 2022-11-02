@@ -6,6 +6,6 @@ Le problème n'est pas présent pour certains TLD (.example, .local, .localhost,
 
 Pour ajouter des TLD en whitelist aller dans about:config et ajouter un item :
 
-browser.fixup.domainsuffixwhitelist.tldperso de type booléen avec la valeur true
+**browser.fixup.domainsuffixwhitelist.tldperso** de type **booléen** avec la valeur **true**
 
 Source : https://support.mozilla.org/en-US/questions/1292986
