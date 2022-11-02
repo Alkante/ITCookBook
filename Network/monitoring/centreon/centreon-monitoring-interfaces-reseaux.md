@@ -21,13 +21,11 @@ Il existe plusieurs commandes de check pour s'adapter aux différents cas :
 - l'interface supporte les compteurs SNMP 64 bits (**IF-MIB::ifHCInOctets** et **IF-MIB::ifHCOutOctets**) (cas général) ou non (cas de certains types d'interfaces sur PFSense)
 - l'équipement switch expose des valeurs IF-MIB::ifDescr différentes pour chaque interface (cas général) ou non (switches Netgear, pour lesquels on doit se baser sur le IF-MIB::ifName pour choisir l'interface à superviser)
 
-+-----------------------------------+-------------------+----------------------------+---------------------------------------+
-|             Commande              | Compteurs 64 bits | Possibilité de set ifSpeed | Choix interface par ifName ou ifDescr |
-+-----------------------------------+-------------------+----------------------------+---------------------------------------+
+|Commande| Compteurs 64 bits |  Possibilité de set ifSpeed | Choix interface par ifName ou ifDescr |
+|--- | --- | --- | ---|
 | check_snmp_traffic_nagvis         | Oui               | non                        | ifDescr                               |
 | check_snmp_traffic_nagvis_netgear | Oui               | non                        | ifName                                |
 | check_snmp_traffic_nagvis_vpn     | Non               | oui                        | ifDescr                               |
-+-----------------------------------+-------------------+----------------------------+---------------------------------------+
 
 Toutes les commandes Centreon se basent sur le même script Perl "check_snmp_traffic_nagvis", il est possible d'en créer d'autres si besoin.
 Options utilisées :
