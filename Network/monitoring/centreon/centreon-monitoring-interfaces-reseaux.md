@@ -13,6 +13,14 @@ SNMP utilisable sur les pollers Centreon :
 SNMP activé sur les équipements
 Host présent sur Centreon, avec sa communauté SNMP et sa version configurées dans les paramètres du host
 
+Le script **check_centreon_snmp_traffic_nagvis** est basé sur le script **check_centreon_snmp_traffic** fourni par Centreon avec les différences suivantes :
+
+l535-536 : décommenter les deux lignes suivantes :
+    $in_perfparse_traffic_str =~ s/\./,/g;
+    $out_perfparse_traffic_str =~ s/\./,/g;
+
+l554 : remplacer le printf des perfdatas par le suivant :
+    printf("|inUsage=$in_usage%%;$warning;$critical outUsage=$out_usage%%;$warning;$critical traffic_in=".$in_perfparse_traffic_str."Bits/s;$warningBit;$criticalBit;0;$speed_card traffic_out=".$out_perfparse_traffic_str."Bits/s;$warningBit;$criticalBit;0;$speed_card\n");
 
 ## Commandes de check Centreon
 
