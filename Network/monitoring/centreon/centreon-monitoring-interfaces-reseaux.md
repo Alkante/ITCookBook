@@ -127,8 +127,8 @@ Pour ajouter un lien dans Nagvis :
 - ajouter une autre shape à l'autre extrémité du lien
 - ajouter une line : 
 Menu **Edit Map => Add Line => Service**
-Cliquer sur la map du côté de la source (device dont on polle l'interface)
-Cliquer sur la map du côté destination (device connecté au premier)
+Cliquer sur la map du côté destination (device connecté au device pollé)
+Cliquer sur la map du côté source (device dont on polle l'interface)
 
 Dans la boite de dialogue :
 - Onglet General : choisir le host et le service centreon
