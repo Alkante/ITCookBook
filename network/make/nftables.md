@@ -159,7 +159,7 @@ table inet filter {
 		tcp dport {http, https} accept comment "Site web"
 
 		tcp dport {ftp,ssh,5432,60000-61000} ip saddr $IP_ENT accept comment "ENTREPRISE"
-		ip protocol icmp ip saddr $IP_ENT accept comment "Alkante ICMP"
+		ip protocol icmp ip saddr $IP_ENT accept comment "ENTREPRISE ICMP"
 
 		tcp dport {ssh,9102,9103} ip saddr $BACKUP accept comment "bacula"
 		ip protocol icmp ip saddr $BACKUP accept comment "bacula ICMP"
