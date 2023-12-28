@@ -22,7 +22,7 @@ SELECT * FROM my_table;
 ```
 ## create db
 ```sql
-CREATE DATABASE `alk_site` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE `bdd_site` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ```
 
 ## Sortir
@@ -131,7 +131,7 @@ flush privileges;
 
 ### privileges
 ```SQL
-grant all privileges on alk_ccmene.* to 'user_ccmene'@'localhost' identified by 'A3rKmhD';
+grant all privileges on bdd_app1.* to 'user_app1'@'localhost' identified by 'XXXXX';
 ```
 
 ### Supprimer user
@@ -147,7 +147,7 @@ DELETE FROM mysql.user WHERE user="my_user"
 
 ### renommer base
 ```SQL
-mysqldump alk_intechmer -p | mysql -D alk_gisgeoceano -p
+mysqldump bdd_app1 -p | mysql -D bdd_app2 -p
 ```
 
 ## Configuration
@@ -178,7 +178,7 @@ Sécurité :  Ne pas utiliser les % pour les hosts
 ```bash
 mysqldump -p --databases ma_base > dump-hostname-ma_base-date.sql
 mysqldump -p -f --opt --databases ${db} | gzip -c > backup.dmp.gz
-mysqldump --user=root --password=<password> --databases alk_crcireb | gzip > MYSQL_alk_crcireb.sql.gz
+mysqldump --user=root --password=<password> --databases bdd_app1 | gzip > MYSQL_abdd_app1.sql.gz
 
 ```
 ## Restaurer
@@ -373,7 +373,7 @@ lower-case-table-names=1
 
 ## encoding
 ```sql
-SHOW CREATE DATABASE alk_geoderis;
+SHOW CREATE DATABASE bdd_app1;
 ```
 
 ## check syntax /etc/mysql/my.cnf

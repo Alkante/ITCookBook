@@ -116,14 +116,14 @@ command[check_http_certificat]=/usr/lib/nagios/plugins/check_http -H iotds.mutu.
 command[check_load]=/usr/lib/nagios/plugins/check_load -r
 command[check_memory]=/usr/lib/nagios/plugins/monitoring-plugins/check_memory -w 20 -c 5
 command[check_ro_mounts]=/usr/lib/nagios/plugins/monitoring-plugins/check_ro_mounts -X tmpfs
-command[check_postgres_connection_test]=/usr/lib/nagios/plugins/check_postgres-2.22.0/check_postgres.pl -H 127.0.0.1 -p 5432 -db alk_rm_maplink -u user_rm -dbpass 7Jy9cY7Rqp9IeNw --action connection
-command[check_postgres_connection_nb]=/usr/lib/nagios/plugins/check_postgres-2.22.0/check_postgres.pl -H 127.0.0.1 -p 5432 -db alk_rm_maplink -u user_rm -dbpass 7Jy9cY7Rqp9IeNw --action backends
-command[check_postgres_remontee_last]=/usr/lib/nagios/plugins/check_postgres-2.22.0/check_postgres.pl -H 127.0.0.1 -p 5432 -db alk_rm_maplink -u user_rm -dbpass 7Jy9cY7Rqp9IeNw --action custom_query --critical 144000 --query "SELECT round(EXTRACT(EPOCH FROM timezone('UTC', now())) - EXTRACT(EPOCH FROM t.time)) AS result FROM ( SELECT id, time FROM jmaplink_remontee ORDER BY id DESC LIMIT 1) AS t"
+command[check_postgres_connection_test]=/usr/lib/nagios/plugins/check_postgres-2.22.0/check_postgres.pl -H 127.0.0.1 -p 5432 -db bdd_app2 -u user_app -dbpass XXXXXXXX --action connection
+command[check_postgres_connection_nb]=/usr/lib/nagios/plugins/check_postgres-2.22.0/check_postgres.pl -H 127.0.0.1 -p 5432 -db bdd_app2 -u user_app -dbpass XXXXXXXX --action backends
+command[check_postgres_remontee_last]=/usr/lib/nagios/plugins/check_postgres-2.22.0/check_postgres.pl -H 127.0.0.1 -p 5432 -db bdd_app2 -u user_app -dbpass XXXXXXXX --action custom_query --critical 144000 --query "SELECT round(EXTRACT(EPOCH FROM timezone('UTC', now())) - EXTRACT(EPOCH FROM t.time)) AS result FROM ( SELECT id, time FROM jmaplink_remontee ORDER BY id DESC LIMIT 1) AS t"
 EOF
 ```
 
 
-Liste des commandes nrpe : 
+Liste des commandes nrpe :
 
 | type | commandes nrpe |
 |----- |--------------- |
@@ -147,7 +147,6 @@ sevice nagios-nrpe-server reload
 
 
 Tester les commandes nrpe coté remote (Ex: test de check_disk)
-```bash test 
+```bash test
 /usr/lib/nagios/plugins/check_nrpe -H 127.0.0.1 -c check_disk
 ```
-
