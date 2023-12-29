@@ -1,0 +1,20 @@
+dn: ou=Groups,dc=example,dc=org
+objectClass: organizationalUnit
+ou: Groups
+
+dn: cn=all,ou=Groups,dc=example,dc=org
+objectClass: groupOfUniqueNames
+cn: all
+description: All users
+uniqueMember: uid=myuser1,ou=Users,dc=example,dc=org
+uniqueMember: uid=myuser2,ou=Users,dc=example,dc=org
+uniqueMember: uid=myuser3,ou=Users,dc=example,dc=org
+
+dn: cn=power,ou=Groups,dc=example,dc=org
+objectClass: groupOfUniqueNames
+cn: power
+description: Group 2
+uniqueMember: uid=myuser2,ou=Users,dc=example,dc=org
+
+
+

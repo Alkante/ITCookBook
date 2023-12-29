@@ -1,0 +1,30 @@
+dn: ou=Users,dc=example,dc=org
+objectClass: organizationalUnit
+ou: Users
+
+dn: uid=myuser1,ou=Users,dc=example,dc=org
+objectClass: top
+objectClass: person
+objectClass: shadowAccount
+cn: My User 1
+sn: My User 1
+uid: myuser1
+userPassword: {SSHA}dAGPV4GEEPk53X6s5Qk9t/UEudkMWKXH
+
+dn: uid=myuser2,ou=Users,dc=example,dc=org
+objectClass: top
+objectClass: person
+objectClass: shadowAccount
+cn: My User 2
+sn: My User 2
+uid: myuser2
+userPassword: {SSHA}dAGPV4GEEPk53X6s5Qk9t/UEudkMWKXH
+
+dn: uid=myuser3,ou=Users,dc=example,dc=org
+objectClass: top
+objectClass: person
+objectClass: shadowAccount
+cn: My User 3
+sn: My User 3
+uid: myuser3
+userPassword: {SSHA}dAGPV4GEEPk53X6s5Qk9t/UEudkMWKXH

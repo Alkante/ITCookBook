@@ -1,0 +1,8 @@
+dn: uid=admin_power,dc=example,dc=org
+objectClass: top
+objectClass: person
+objectClass: shadowAccount
+cn: Admin Power Group
+sn: Admin Power Group
+uid: admin_power
+userPassword: {SSHA}dAGPV4GEEPk53X6s5Qk9t/UEudkMWKXH

@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  openldap:
+    image: osixia/openldap:1.3.0
+    container_name: openldap
+    volumes: 
+      - ./data/openldap/database:/var/lib/ldap    # LDAP database files)  chown 999:999 chmod 755
+      - ./data/openldap/config:/etc/ldap/slapd.d  # LDAP config files)    chown 999:999 chmod 755
+      #- ./data/slapd/overide_init_ldif:/container/service/slapd/assets/config/bootstrap/ldif  # WARNING, all this file will be deleted after startup
+      - ./data/openldap/add_init_ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom  # WARNING, all this file will be deleted after startup
+      #- ./cert:/container/service/slapd/assets/certs # Used to overload by your certificate. See also environement variables
+    ports:
+      - "389:389"  # Ldap and ldap+startTLS
+      - "636:636"  # Ldap + SSL 
+    environment:
+      #- LDAP_OPENLDAP_UID=${UID}
+      #- LDAP_OPENLDAP_GID=${GID}
+      - LDAP_DOMAIN=example.org   # overide "dc=example,dc=org" by "dc= my-company,dc=com" during the creating
+      - LDAP_CONFIG_PASSWORD=config  # Password of cn=admin,cn=config
+      - LDAP_ADMIN_PASSWORD=admin    # Password of cn=admin,dc=example,cd=org
+      - LDAP_REMOVE_CONFIG_AFTER_SETUP=false
+    #  - LDAP_TLS_CRT_FILENAME=exemple.org.crt  # Used to overload by your certificate
+    #  - LDAP_TLS_KEY_FILENAME=exemple.org.key  # Used to overload by your certificate
+    #  - LDAP_TLS_CA_CRT_FILENAME=CA.crt        # Used to overload by your certificate
+
+    #  - LDAP_TLS=false                        # Disable TLS
+    #command: 
+    #  - --copy-service # Not overide /ldif/custom volume
+

@@ -1,0 +1,9 @@
+dn: olcDatabase={-1}frontend,cn=config
+changetype: modify
+add: olcPasswordHash
+olcPasswordHash: {CRYPT},{SSHA}
+
+dn: cn=config
+changetype: modify
+add: olcPasswordCryptSaltFormat
+olcPasswordCryptSaltFormat: "$6$%.16s"
