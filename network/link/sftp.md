@@ -31,7 +31,7 @@ vim /etc/ssh/sshd_config
 Match Group fmii
   # Force the connection to use SFTP and chroot to the required directory.
   ForceCommand internal-sftp
-  ChrootDirectory /app/rails/production/businessimmo/fmii
+  ChrootDirectory /app/rails/production/app
   # Disable tunneling, authentication agent, TCP and X11 forwarding.
   PermitTunnel no
   AllowAgentForwarding no
