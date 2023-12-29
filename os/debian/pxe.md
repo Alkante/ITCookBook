@@ -29,7 +29,7 @@ allow bootp;
 
 subnet 192.168.100.0 netmask 255.255.255.192 {
         range 192.168.100.30 192.168.100.50;
-        option domain-name "naud.lan";
+        option domain-name "exemple.lan";
         option domain-name-servers 192.168.100.61;
         option routers 192.168.100.62;
         default-lease-time 600;

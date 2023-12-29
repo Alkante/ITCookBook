@@ -1,4 +1,5 @@
-# Empêcher Firefox de faire une recherche une recherche par défaut pour un nom de domaine avec un TLD personnalisé
+# Firefox
+## Empêcher Firefox de faire une recherche une recherche par défaut pour un nom de domaine avec un TLD personnalisé
 
 Exemple : pour le nom serveur.entreprise.tldperso, Firefox peut considérer que ce n'est pas un nom de domaine "valide" alors qu'il est résolvable en interne, et peut déclencher une recherche au lieu de tenter une résolution DNS.
 Le problème n'est pas présent pour certains TLD (.example, .local, .localhost, .invalid ...) car ils sont déjà en whitelist.

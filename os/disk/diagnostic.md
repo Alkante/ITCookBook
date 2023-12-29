@@ -49,13 +49,6 @@ lsof -n | awk '{print $1}' | sort |  uniq -c | sort -rn | head
 ```bash
 dd if=/dev/zero of=/tmp/output.img bs=8k count=128k
 ```
-  x002 : 100Mo
-  geopalqualif : 130Mo
-  geopal : 200Mo
-  si17 : 140Mo
-  nfs cesson : 40Mo
-  poste sata : 75Mo
-  gigabit : 100Mo
 
 ## hdparm (test trop synthetique..)
 ```bash
