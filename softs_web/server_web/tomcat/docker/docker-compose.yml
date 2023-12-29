@@ -1,0 +1,8 @@
+version: '3'
+services:
+  tomcat8-hello-world:
+    build: .
+    container_name: tomcat8-hello-world
+    ports:
+      - "8080:8080"
+

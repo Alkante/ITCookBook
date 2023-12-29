@@ -1,0 +1,23 @@
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes: 
+      - ./data/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml  # chown nobody:ngroup ./data/prometheus/config/prometheus.yml
+      #- ./config:/etc/prometheus
+    ports:
+      - "9090:9090"
+  grafana:
+    image: grafana/grafana:6.7.2
+    container_name: grafana
+    #volumes: 
+      #- "./data/grafana/data:/var/lib/grafana" #chmod 777 ./data/grafana/data #chown 472:472 ./data/grafana/data
+      #- "./data/grafana/grafana.ini:/etc/grafana/grafana.ini" #chmod 644; chown 0:0;
+      #- "./var/grafana/log:/var/log/grafana" # chmod 777; chown 472:472;
+      #- ":/var/lib/grafana/plugins"
+      #- ":/etc/grafana/provisioning"
+    ports:
+      - "3000:3000"
+    #environements:
+    #  - "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource"
