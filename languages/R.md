@@ -15,6 +15,4 @@ apt-get install r-base
 
 ## Dev
 
-Installer l'IDE RStudio en le téléchargant sur le site [https://www.rstudio.com](https://www.rstudio.com)
-
-
+Installer l'IDE RStudio en le téléchargeant sur le site [https://www.rstudio.com](https://www.rstudio.com)
