@@ -1,0 +1,382 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>FreeSWITCH Conference Commands &#8212; sipxcom 20.04 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">sipxcom 20.04 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="freeswitch-conference-commands">
+<h1>FreeSWITCH Conference Commands<a class="headerlink" href="#freeswitch-conference-commands" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-conference-services">
+<h2>About Conference Services<a class="headerlink" href="#about-conference-services" title="Permalink to this headline">¶</a></h2>
+<p>The Conference Web Services APIs allow the administrator to send commands to the FreeSWITCH platform.</p>
+</div>
+<div class="section" id="base-url">
+<h2>Base URL<a class="headerlink" href="#base-url" title="Permalink to this headline">¶</a></h2>
+<p>The base URL for the Conference web services is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">username</span><span class="p">:</span><span class="n">password</span><span class="nd">@host</span><span class="o">.</span><span class="n">domain</span><span class="o">/</span><span class="n">sipxconfig</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">conference</span><span class="o">/</span><span class="p">{</span><span class="n">conference</span><span class="o">-</span><span class="n">name</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>For the above URL you can use the /{command}&amp;{arg 1}&amp;{arg 2}… URL with the PUT HTTP method to send the desired commands and arguments to FreeSwitch.</p>
+<p><strong>Available FreeSWITCH commands and arguments</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Command Name</strong></td>
+<td><strong>Command Details</strong></td>
+<td><strong>Usage</strong></td>
+</tr>
+<tr class="row-even"><td><em>bgdial</em></td>
+<td>&#160;</td>
+<td>&lt;endpoint_module_name&gt;/&lt;destination&gt; &lt;callerid number&gt; &lt;callerid name&gt;</td>
+</tr>
+<tr class="row-odd"><td><em>deaf</em></td>
+<td>Make a conference member deaf.</td>
+<td>&lt;[member_id|all]|last&gt;</td>
+</tr>
+<tr class="row-even"><td><em>dial</em></td>
+<td>Dial a destination via a specific endpoint.</td>
+<td>&lt;endpoint_module_name&gt;/&lt;destination&gt; &lt;callerid number&gt; &lt;callerid name&gt;</td>
+</tr>
+<tr class="row-odd"><td><em>dtmf</em></td>
+<td>Send DTMF to any member of the conference.</td>
+<td>&lt;[member_id|all|last]&gt; &lt;digits&gt;</td>
+</tr>
+<tr class="row-even"><td><em>energy</em></td>
+<td>Adjusts the conference energy level for a specific member.</td>
+<td>&lt;member_id|all|last&gt; [&lt;newval&gt;]</td>
+</tr>
+<tr class="row-odd"><td><em>hup</em></td>
+<td>Kick without the kick sound.</td>
+<td>conference &lt;confname&gt; hup &lt;[member_id|all|last]&gt;</td>
+</tr>
+<tr class="row-even"><td><em>kick</em></td>
+<td>Kicks a specific member form a conference.</td>
+<td>&lt;[member_id|all|last]&gt;</td>
+</tr>
+<tr class="row-odd"><td><em>list</em></td>
+<td>Lists all or a specific conference members.</td>
+<td>conference list [delim &lt;string&gt;]</td>
+</tr>
+<tr class="row-even"><td><em>lock</em></td>
+<td>Lock a conference so no new members will be allowed to enter.</td>
+<td>lock</td>
+</tr>
+<tr class="row-odd"><td><em>mute</em></td>
+<td>Mutes a specific member in a conference.</td>
+<td>&lt;[member_id|all]|last&gt;</td>
+</tr>
+<tr class="row-even"><td><em>norecord</em></td>
+<td>Remove recording for a specific conference.</td>
+<td>&lt;[filename|all]&gt;</td>
+</tr>
+<tr class="row-odd"><td><em>nopin</em></td>
+<td>Removes a pin for a specific conference.</td>
+<td>nopin</td>
+</tr>
+<tr class="row-even"><td><em>pin</em></td>
+<td>Sets or changes a pin number for a specific conference. Note: if you set a conference pin and then issue a command like conference &lt;confname&gt; dial <a class="reference external" href="mailto:sofia/default/123456&#37;&#52;&#48;softswitch">sofia/default/123456<span>&#64;</span>softswitch</a>, 123456 will not be challenged with a pin but he will just joins the conference named &lt;confname&gt;.</td>
+<td>&lt;pin#&gt;</td>
+</tr>
+<tr class="row-odd"><td><em>play</em></td>
+<td>Play an audio file in a conference to all members or to a specific member. You can stop that same audio with the stop command below.</td>
+<td>&lt;file_path&gt; [async|&lt;member_id&gt;]</td>
+</tr>
+<tr class="row-even"><td><em>record</em></td>
+<td>&#160;</td>
+<td>&lt;filename&gt;</td>
+</tr>
+<tr class="row-odd"><td><em>relate</em></td>
+<td>Mute or Deaf a specific member to another member.</td>
+<td>&lt;member_id&gt; &lt;other_member_id&gt; [nospeak|nohear|clear]</td>
+</tr>
+<tr class="row-even"><td><em>say</em></td>
+<td>Write a message to all members in the conference.</td>
+<td>&lt;text&gt;</td>
+</tr>
+<tr class="row-odd"><td><em>saymember</em></td>
+<td>Write a messaget to a specific member in a conference.</td>
+<td>&lt;member_id&gt; &lt;text&gt;</td>
+</tr>
+<tr class="row-even"><td><em>stop</em></td>
+<td>Stops any queued audio from playing.</td>
+<td>&lt;[current|all|async|last]&gt; [&lt;member_id&gt;]</td>
+</tr>
+<tr class="row-odd"><td><em>transfer</em></td>
+<td>Transfer a member from one conference to another conference. To transfer a member to another extension use the api transfer command with the uuid of their session.</td>
+<td>&lt;conference_name&gt; &lt;member id&gt; […&lt;member id&gt;]</td>
+</tr>
+<tr class="row-even"><td><em>unmute</em></td>
+<td>Unmute a specific member of a conference.</td>
+<td>&lt;[member_id|all]|last&gt;</td>
+</tr>
+<tr class="row-odd"><td><em>undeaf</em></td>
+<td>Allow a specific member to hear the conference.</td>
+<td>&lt;[member_id|all]|last&gt;</td>
+</tr>
+<tr class="row-even"><td><em>unlock</em></td>
+<td>Unlock a conference so that new members can enter.</td>
+<td>unlock</td>
+</tr>
+<tr class="row-odd"><td><em>volume_in</em></td>
+<td>Adjusts the input volume for a specific conference member.</td>
+<td>&lt;member_id|all|last&gt; [&lt;newval&gt;]</td>
+</tr>
+<tr class="row-even"><td><em>volume_out</em></td>
+<td>Adjust the output volume for a specific conference member.</td>
+<td>&lt;member_id|all|last&gt; [&lt;newval&gt;]</td>
+</tr>
+<tr class="row-odd"><td><em>xml_list</em></td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt><strong>Specific Response Codes:</strong></dt>
+<dd><ul class="first last simple">
+<li>Error 404 when {confName} is not found.</li>
+<li>Error 403 when authenticated user is not the owner of {confName}</li>
+<li>Error 400 when no {command} is specified or the command is incorrect.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="dial-additional-information">
+<h2>Dial Additional Information<a class="headerlink" href="#dial-additional-information" title="Permalink to this headline">¶</a></h2>
+<p>If the caller ID values are not set, the variables set in the conference.conf.xml are used. Specifically, the value for caller-id-number is used for the number and the value for caller-id-name is used for the name. If the conference is dynamically created as a result of this API and the caller-id-number and caller-id-number is not provided in the API call then the number and name will be “00000000” and respectively “FreeSWITCH”.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conference</span> <span class="n">testconf</span> <span class="n">dial</span> <span class="p">{</span><span class="n">originate_timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">}</span><span class="n">sofia</span><span class="o">/</span><span class="n">default</span><span class="o">/</span><span class="mi">1000</span><span class="nd">@softswitch</span> <span class="mi">1234567890</span> <span class="n">FreeSWITCH_Conference</span>
+</pre></div>
+</div>
+<p>The above API call will dial out of a conference named “testconf” to the user located at the specified endpoint with a 30 second timeout. The endpoint will see the call as coming from “FreeSWITCH_Conference” with a caller id of 1234567890.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The values provided in the dial string overwrite the caller-id-number and caller-id-name variables provided at the end of the API call.</p>
+</div>
+</div>
+<div class="section" id="list-additional-information">
+<h2>List Additional Information<a class="headerlink" href="#list-additional-information" title="Permalink to this headline">¶</a></h2>
+<p>The output generated by the system is named by default with the following format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">conference</span> <span class="n">name</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">member_count</span><span class="o">&gt;</span> <span class="n">member</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="n">locked</span><span class="p">]),</span>
+</pre></div>
+</div>
+<p>Where locked can represent either the locked or unlockes status of the conference.</p>
+<p>The following items are a separated list in CSV format for each conference leg.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Item</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>ID of participant</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><em>Register string of participants</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><em>UUID of participants call leg</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><em>Caller ID Number</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><em>Status</em></td>
+<td>Options are ‘hear’ (mute/deaf), ‘speak’ (deaf/undeaf), ‘talking’ (sound energy), ‘video’ (video enabled), and ‘floor’ (member owns the floor).</td>
+</tr>
+<tr class="row-odd"><td><em>VolumeIn</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><em>VolumeOut</em></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><em>EnergyLevel</em></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="related-additional-information">
+<h2>Related Additional Information<a class="headerlink" href="#related-additional-information" title="Permalink to this headline">¶</a></h2>
+<p><strong>Conference Examples</strong></p>
+<p>Member 1 may now no longer speak to member 2, i.e. member 2 now cannot hear member 1</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conference</span> <span class="n">my_conf</span> <span class="n">relate</span> <span class="mi">1</span> <span class="mi">2</span> <span class="n">nospeak</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Member 1 may now speak to member 2 again</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conference</span> <span class="n">my_conf</span> <span class="n">relate</span> <span class="mi">1</span> <span class="mi">2</span> <span class="n">clear</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Member 1 now cannot hear member 2</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conference</span> <span class="n">my_conf</span> <span class="n">relate</span> <span class="mi">1</span> <span class="mi">2</span> <span class="n">nohear</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Member 1 can now hear member 2 again</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">confernce</span> <span class="n">my_conf</span> <span class="n">relate</span> <span class="mi">1</span> <span class="mi">2</span> <span class="n">clear</span><span class="p">:</span>
+</pre></div>
+</div>
+<p><strong>Command Examples</strong></p>
+<p>Lock a conference with name “WeeklyTeamConf”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X PUT https://200:123@localhost/sipxconfig/rest/my/conference/WeeklyTeamConf/lock</span>
+</pre></div>
+</div>
+<p>Invite user in conference given username</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k https://400:123@gerula-dev.buc.ro/sipxconfig/rest/my/conference/Conf400/invite\&amp;401</span>
+</pre></div>
+</div>
+<p>Invite user in conference given IM ID</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k https://400:123@gerula-dev.buc.ro/sipxconfig/rest/my/conference/Conf400/inviteim\&amp;401im</span>
+</pre></div>
+</div>
+<p>Other examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k https://400:123@gerula-dev.buc.ro/sipxconfig/rest/my/conference/Conf400/xml_list</span>
+
+<span class="c1"># curl -k https://400:123@gerula-dev.buc.ro/sipxconfig/rest/my/conference/Conf400/kick\&amp;all</span>
+
+<span class="c1"># curl -k https://400:123@gerula-dev.buc.ro/sipxconfig/rest/my/conference/Conf400/record</span>
+
+<span class="c1"># curl -k https://400:123@gerula-dev.buc.ro/sipxconfig/rest/my/conference/Conf400/record\&amp;stop</span>
+
+<span class="c1"># curl -k https://400:123@gerula-dev.buc.ro/sipxconfig/rest/my/conference/Conf400/record\&amp;status</span>
+
+<span class="c1"># curl -k https://400:123@gerula-dev.buc.ro/sipxconfig/rest/my/conference/Conf400/record\&amp;duration</span>
+</pre></div>
+</div>
+<p>Sample PHP click to call code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?php
+$to=&quot;101&quot;;//Number to dial
+$from=&quot;5001&quot;;//userid in sipx
+$pass=&quot;1234&quot;;//sipx pin (NOT SIP password)
+//replace sipx.gcgov.local with your sipx server
+$url = &quot;http://sipx.gcgov.local:6667/callcontroller/&quot;.$from.&quot;/&quot;.$to.&quot;?isForwardingAllowed=true&quot;;
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_USERPWD, $from.&quot;:&quot;.$pass);
+$result = curl_exec($ch);
+curl_close($ch);
+?&gt;
+</pre></div>
+</div>
+<p>Sample contact information</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;contact-information&gt;
+&lt;jobTitle&gt;Data Entry Assistant&lt;/jobTitle&gt;
+&lt;jobDept&gt;Data Management Services&lt;/jobDept&gt;
+&lt;companyName&gt;Museum of Science&lt;/companyName&gt;
+&lt;homeAddress&gt;
+&lt;city&gt;NY&lt;/city&gt;
+&lt;/homeAddress&gt;
+&lt;officeAddress&gt;
+&lt;street&gt;1 Science Park&lt;/street&gt;
+&lt;city&gt;Boston&lt;/city&gt;
+&lt;country&gt;US&lt;/country&gt;
+&lt;state&gt;MA&lt;/state&gt;
+&lt;zip&gt;02114&lt;/zip&gt;
+&lt;/officeAddress&gt;
+&lt;imId&gt;myId&lt;/imId&gt;
+&lt;emailAddress&gt;john.doe@example.com&lt;/emailAddress&gt;
+&lt;useBranchAddress&gt;false&lt;/useBranchAddress&gt;
+&lt;avatar&gt;https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=80&amp;amp;d=G&lt;/avatar&gt;
+&lt;firstName&gt;John&lt;/firstName&gt;
+&lt;lastName&gt;Doe&lt;/lastName&gt;
+&lt;/contact-information&gt;
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/sipxcom_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">FreeSWITCH Conference Commands</a><ul>
+<li><a class="reference internal" href="#about-conference-services">About Conference Services</a></li>
+<li><a class="reference internal" href="#base-url">Base URL</a></li>
+<li><a class="reference internal" href="#dial-additional-information">Dial Additional Information</a></li>
+<li><a class="reference internal" href="#list-additional-information">List Additional Information</a></li>
+<li><a class="reference internal" href="#related-additional-information">Related Additional Information</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/freeswitchapi.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">sipxcom 20.04 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Support Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

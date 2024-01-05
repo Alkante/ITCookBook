@@ -1,0 +1,875 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>REST API &#8212; sipxcom 20.04 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Maintenance" href="maintenance.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="maintenance.html" title="Maintenance"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">sipxcom 20.04 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rest-api">
+<span id="index-0"></span><h1>REST API<a class="headerlink" href="#rest-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="auto-attendant-aa">
+<h2>Auto Attendant (AA)<a class="headerlink" href="#auto-attendant-aa" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="view-aa-list">
+<h3>View AA List<a class="headerlink" href="#view-aa-list" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI</strong>: /rest/auto-attendant</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>autoattendant</em></td>
+<td>The items displayed in the list</td>
+</tr>
+<tr class="row-odd"><td><em>name</em></td>
+<td>Auto attendant name</td>
+</tr>
+<tr class="row-even"><td><em>systemId</em></td>
+<td>System ID</td>
+</tr>
+<tr class="row-odd"><td><em>specialSelected</em></td>
+<td>Determines whether the AA is active or not.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves the list of auto-attendants configured.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.31/sipxconfig/rest/auto-attendant/</span>
+<span class="o">&lt;</span><span class="n">autoAttendants</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">autoAttendant</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">Operator</span><span class="o">&lt;/</span><span class="n">name</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">systemId</span><span class="o">&gt;</span><span class="n">operator</span><span class="o">&lt;/</span><span class="n">systemId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">specialSelected</span><span class="o">&gt;</span><span class="n">false</span><span class="o">&lt;/</span><span class="n">specialSelected</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">autoAttendant</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">autoAttendant</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">After</span> <span class="n">hours</span><span class="o">&lt;/</span><span class="n">name</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">systemId</span><span class="o">&gt;</span><span class="n">afterhour</span><span class="o">&lt;/</span><span class="n">systemId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">specialSelected</span><span class="o">&gt;</span><span class="n">false</span><span class="o">&lt;/</span><span class="n">specialSelected</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">autoAttendant</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Unsupported HTTP Methods:</strong> POST, PUT, DELETE</p>
+</div>
+<div class="section" id="view-or-modify-aa-special-mode">
+<h3>View or modify AA special mode<a class="headerlink" href="#view-or-modify-aa-special-mode" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /rest/auto-attendant/specialmode</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET is performed:</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>specialMode</em></td>
+<td>The status of the AA special mode. Displays <strong>true</strong> if the AA is on and <strong>false</strong> if the AA is off.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Displays if the auto attendant is activated or not.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.31/sipxconfig/rest/auto-attendant/specialmode</span>
+<span class="o">&lt;</span><span class="n">specialAttendant</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">specialMode</span><span class="o">&gt;</span><span class="n">false</span><span class="o">&lt;/</span><span class="n">specialMode</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> PUT</dt>
+<dd>The status is set to true and the special mode is activated.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X PUT -H &quot;Content-Type: application/json&quot; -d &#39;{&quot;specialMode&quot;:&quot;true&quot;}&#39;  https://superadmin:password@192.168.1.31/sipxconfig/rest/auto-attendant/specialmode</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> DELETE</dt>
+<dd>The status is set to false and the special mode is deactivated.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X DELETE -H &quot;Content-Type: application/json&quot; -d &#39;{&quot;specialMode&quot;:&quot;true&quot;}&#39;  https://superadmin:password@192.168.1.31/sipxconfig/rest/auto-attendant/specialmode</span>
+</pre></div>
+</div>
+<p><strong>Unsupported HTTP Methods:</strong> POST</p>
+</div>
+<div class="section" id="setting-an-aa-in-special-mode">
+<h3>Setting an AA in special mode<a class="headerlink" href="#setting-an-aa-in-special-mode" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /rest/auto-attendant/{attendant}/special</p>
+<p><strong>Default Resource Properties</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>Specific Response Codes:</strong></dt>
+<dd><ul class="first last simple">
+<li>Error 400 - when the {attendant} is not found on PUT or DELETE.</li>
+<li>Error 409 - when the special mode is true on DELETE.</li>
+</ul>
+</dd>
+<dt><strong>HTTP Method:</strong> PUT</dt>
+<dd>The auto attendant is marked as special.</dd>
+<dt><strong>HTTP Method:</strong> DELETE</dt>
+<dd>Remove the attendant special mode.</dd>
+</dl>
+<p><strong>Unsupported HTTP Method:</strong> GET, POST</p>
+</div>
+<div class="section" id="enable-an-aa">
+<h3>Enable an AA<a class="headerlink" href="#enable-an-aa" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /rest/auto-attendant/livemode/{code}</p>
+<p><strong>Default Resource Properties</strong> N/A</p>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> PUT</dt>
+<dd>The auto attendant with the specified code is enabled. Note that hte code represents the phones extension.</dd>
+<dt><strong>HTTP Method:</strong> DELETE</dt>
+<dd>The auto attendant with the specified code is disabled. Note that hte code represents the phones extension.</dd>
+</dl>
+<p><strong>Unsupported HTTP Method:</strong> GET, POST</p>
+</div>
+</div>
+<div class="section" id="branch">
+<h2>Branch<a class="headerlink" href="#branch" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="view-or-modify-branches">
+<h3>View or modify branches<a class="headerlink" href="#view-or-modify-branches" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /rest/branch</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>totalResults</em></td>
+<td>The total number of results.</td>
+</tr>
+<tr class="row-odd"><td><em>currentPage</em></td>
+<td>Number of the current page.</td>
+</tr>
+<tr class="row-even"><td><em>totalPages</em></td>
+<td>The number of total pages.</td>
+</tr>
+<tr class="row-odd"><td><em>resultPerPage</em></td>
+<td>Number of results per page.</td>
+</tr>
+<tr class="row-even"><td><em>ID</em></td>
+<td>Unique identification number of the branch.</td>
+</tr>
+<tr class="row-odd"><td><em>name</em></td>
+<td>Branch name</td>
+</tr>
+<tr class="row-even"><td><em>description</em></td>
+<td>Short description provided by the user.</td>
+</tr>
+<tr class="row-odd"><td><em>address</em></td>
+<td>The complete address of the branch.</td>
+</tr>
+<tr class="row-even"><td><em>street</em></td>
+<td>The name of the street.</td>
+</tr>
+<tr class="row-odd"><td><em>city</em></td>
+<td>The name of the city.</td>
+</tr>
+<tr class="row-even"><td><em>country</em></td>
+<td>The name of the country.</td>
+</tr>
+<tr class="row-odd"><td><em>state</em></td>
+<td>The name of the state.</td>
+</tr>
+<tr class="row-even"><td><em>zip</em></td>
+<td>The postal zip code.</td>
+</tr>
+<tr class="row-odd"><td><em>officeDesignation</em></td>
+<td>The mail stop field.</td>
+</tr>
+<tr class="row-even"><td><em>phoneNumber</em></td>
+<td>The phone number of the branch.</td>
+</tr>
+<tr class="row-odd"><td><em>faxNumber</em></td>
+<td>The fax number of the branch.</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt><strong>Specific Response Codes:</strong></dt>
+<dd>Error 400 - Wrong ID when updating the branch</dd>
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves a list of branches defined in the system.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.31/sipxconfig/rest/branch</span>
+<span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">metadata</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">totalResults</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">totalResults</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">currentPage</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">currentPage</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">totalPages</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">totalPages</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">resultsPerPage</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">resultsPerPage</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">metadata</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">branches</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="nb">id</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">whitehouse</span><span class="o">&lt;/</span><span class="n">name</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">description</span><span class="o">&gt;</span><span class="n">location</span> <span class="n">description</span> <span class="n">field</span><span class="o">&lt;/</span><span class="n">description</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">address</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="nb">id</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">street</span><span class="o">&gt;</span><span class="mi">1600</span> <span class="n">Pennsylvania</span> <span class="n">Avenue</span> <span class="n">NW</span><span class="o">&lt;/</span><span class="n">street</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">city</span><span class="o">&gt;</span><span class="n">Washington</span><span class="o">&lt;/</span><span class="n">city</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">country</span><span class="o">&gt;</span><span class="n">US</span><span class="o">&lt;/</span><span class="n">country</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="n">DC</span><span class="o">&lt;/</span><span class="n">state</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nb">zip</span><span class="o">&gt;</span><span class="mi">20500</span><span class="o">&lt;/</span><span class="nb">zip</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">address</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">branch</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">branches</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">branch</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> PUT</dt>
+<dd>Adds a new branch. The ID is automatically generated and any value entered is ignored.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># curl -k -X PUT -H &quot;Content-Type: application/json&quot; -d &#39;{&quot;branch&quot;:{&quot;name&quot;:&quot;libofcongress&quot;,&quot;description&quot;:&quot;library of congress&quot;,&quot;address&quot;:{&quot;street&quot;:&quot;101 Independence Ave SE&quot;,&quot;city&quot;:&quot;Washington&quot;,&quot;state&quot;:&quot;DC&quot;,&quot;zip&quot;:&quot;20540&quot;}}}&#39;  https://superadmin:password@192.168.1.31/sipxconfig/rest/branch
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;response&gt;&lt;code&gt;SUCCESS_CREATED&lt;/code&gt;&lt;message&gt;Created&lt;/message&gt;&lt;data&gt;&lt;id&gt;3&lt;/id&gt;&lt;/data&gt;&lt;/response&gt;
+</pre></div>
+</div>
+<p><strong>Unsupported HTTP Method:</strong> DELETE</p>
+</div>
+<div class="section" id="view-or-modify-a-branch-id">
+<h3>View or modify a branch ID<a class="headerlink" href="#view-or-modify-a-branch-id" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /rest/branch/{id}</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>branch</em></td>
+<td>The branch information is the same as /branch</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt><strong>Specific Response Codes:</strong></dt>
+<dd>Error 400 - wrong ID when updating the branch</dd>
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves information on the branch with the specified ID.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.31/sipxconfig/rest/branch/1</span>
+<span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="nb">id</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">whitehouse</span><span class="o">&lt;/</span><span class="n">name</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">description</span><span class="o">&gt;</span><span class="n">location</span> <span class="n">description</span> <span class="n">field</span><span class="o">&lt;/</span><span class="n">description</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">address</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="nb">id</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">street</span><span class="o">&gt;</span><span class="mi">1600</span> <span class="n">Pennsylvania</span> <span class="n">Avenue</span> <span class="n">NW</span><span class="o">&lt;/</span><span class="n">street</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">city</span><span class="o">&gt;</span><span class="n">Washington</span><span class="o">&lt;/</span><span class="n">city</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">country</span><span class="o">&gt;</span><span class="n">US</span><span class="o">&lt;/</span><span class="n">country</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="n">DC</span><span class="o">&lt;/</span><span class="n">state</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nb">zip</span><span class="o">&gt;</span><span class="mi">20500</span><span class="o">&lt;/</span><span class="nb">zip</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">officeDesignation</span><span class="o">&gt;</span><span class="n">ovaloffice</span><span class="o">&lt;/</span><span class="n">officeDesignation</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">address</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">phoneNumber</span><span class="o">&gt;</span><span class="mi">4235551212</span><span class="o">&lt;/</span><span class="n">phoneNumber</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">faxNumber</span><span class="o">&gt;</span><span class="mi">4235552323</span><span class="o">&lt;/</span><span class="n">faxNumber</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">branch</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> PUT</dt>
+<dd>Updates the branch with the specified ID. Uses the same XML as for creation.</dd>
+<dt><strong>HTTP Method:</strong> DELETE</dt>
+<dd>Removes branch with the specified ID.</dd>
+</dl>
+<p><strong>Unsupported HTTP Method:</strong> POST</p>
+</div>
+</div>
+<div class="section" id="dns">
+<h2>DNS<a class="headerlink" href="#dns" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="view-dns-settings">
+<h3>View DNS settings<a class="headerlink" href="#view-dns-settings" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /api/dns/settings</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>path</em></td>
+<td>Path to the setting.</td>
+</tr>
+<tr class="row-odd"><td><em>type</em></td>
+<td>Setting type. Possible options are <strong>string</strong>, <strong>boolean</strong>, or <strong>enum</strong>.</td>
+</tr>
+<tr class="row-even"><td><em>options</em></td>
+<td>Availble setting options.</td>
+</tr>
+<tr class="row-odd"><td><em>value</em></td>
+<td>The current selected option of the setting.</td>
+</tr>
+<tr class="row-even"><td><em>defaultValue</em></td>
+<td>The default value of the setting.</td>
+</tr>
+<tr class="row-odd"><td><em>label</em></td>
+<td>The setting label.</td>
+</tr>
+<tr class="row-even"><td><em>description</em></td>
+<td>Short description provided by the user.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves the settings for all DNS entries in the system.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.31/sipxconfig/api/dns/settings</span>
+<span class="p">{</span><span class="s2">&quot;settings&quot;</span><span class="p">:[{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;named-config/forwarders/forwarder_0&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;192.168.1.31&quot;</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Primary External DNS server&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;DNS server in your company or your ITSP. Can also be a publicly available DNS server like 8.8.8.8.&quot;</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;named-config/forwarders/forwarder_1&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Secondary External DNS server&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;In the event the primary DNS server is unavailable, system will use this server.&quot;</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;named-config/forwarders/forwarder_2&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Additional External DNS server&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;named-config/forwarders/forwarder_3&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Additional External DNS server&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;named-config/forwarders/forwarder_4&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Additional External DNS server&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;acl/ips&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;192.168.1.31,172.16.0.0/12,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8&quot;</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="s2">&quot;192.168.1.31,172.16.0.0/12,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Allow Recursion ACL&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;Groups of hosts (comma separated values of IP addresses or subnet) allowed to make recursive queries on the nameserver. &lt;br/&gt;Leave empty for allowing all hosts to perform recursive queries on the nameserver.&quot;</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;sys/unmanaged&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Unmanaged Service&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;Company or ITSP DNS servers to resolve ALL names instead of local DNS servers.&quot;</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;sys/unmanaged_servers/unmanaged_0&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Primary Unmanaged DNS server&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;DNS server in your company or your ITSP. Can also be a publicly available DNS server like 8.8.8.8.&quot;</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;sys/unmanaged_servers/unmanaged_1&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Secondary Unmanaged DNS server&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;In the event the primary DNS server is unavailable, system will use this server.&quot;</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;sys/unmanaged_servers/unmanaged_2&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Additional Unmanaged DNS server&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">},{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;sys/unmanaged_servers/unmanaged_3&quot;</span><span class="p">,</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;defaultValue&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Additional Unmanaged DNS server&quot;</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">}]}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="view-dns-settings-from-path">
+<h3>View DNS settings from path<a class="headerlink" href="#view-dns-settings-from-path" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /api/dns/settings/{settingPath}</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>setting</em></td>
+<td>The dns setting related information is similar to the one described under /dns/settings.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves the DNS settings from the speicifed path.</dd>
+</dl>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>Example*:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">**</span><span class="n">HTTP</span> <span class="n">Method</span><span class="p">:</span><span class="o">**</span> <span class="n">PUT</span>
+</pre></div>
+</div>
+<blockquote>
+<div>Updates the settings of the DNS server from the specified path. PUT data is plain text.</div></blockquote>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> DELETE</dt>
+<dd>Deletes the settings of the DNS server from the specified path.</dd>
+</dl>
+<p><strong>Unsupported HTTP Method:</strong> POST</p>
+</div>
+<div class="section" id="view-dns-advisor-results">
+<h3>View DNS Advisor results<a class="headerlink" href="#view-dns-advisor-results" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /api/dns/advisor/server/{serverId}</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>Missing naptr records</em></td>
+<td>List of the missing NAPTR records, if any.</td>
+</tr>
+<tr class="row-odd"><td><em>Missing A records</em></td>
+<td>List of missing A records, if any.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Checks the DNS settings and if the settings are correct, no result is returned. Otherwise it retrieves the missing configurations.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.31/sipxconfig/api/dns/advisor/server/1</span>
+
+<span class="p">;;</span> <span class="n">Missing</span> <span class="n">naptr</span> <span class="n">records</span>
+<span class="n">home</span><span class="o">.</span><span class="n">mattkeys</span><span class="o">.</span><span class="n">net</span><span class="o">.</span> <span class="n">IN</span> <span class="n">NAPTR</span> \<span class="n">d</span> <span class="mi">0</span> <span class="s2">&quot;s&quot;</span> <span class="s2">&quot;SIP+D2U&quot;</span> <span class="s2">&quot;&quot;</span> <span class="n">_sip</span><span class="o">.</span><span class="n">_udp</span>
+<span class="n">home</span><span class="o">.</span><span class="n">mattkeys</span><span class="o">.</span><span class="n">net</span><span class="o">.</span> <span class="n">IN</span> <span class="n">NAPTR</span> <span class="mi">1</span> <span class="mi">0</span> <span class="s2">&quot;s&quot;</span> <span class="s2">&quot;SIP+D2T&quot;</span> <span class="s2">&quot;&quot;</span> <span class="n">_sip</span><span class="o">.</span><span class="n">_tcp</span>
+
+<span class="p">;;</span> <span class="n">Missing</span> <span class="n">a</span> <span class="n">records</span>
+<span class="n">sipxcom1</span><span class="o">.</span><span class="n">home</span><span class="o">.</span><span class="n">mattkeys</span><span class="o">.</span><span class="n">net</span>  <span class="n">IN</span> <span class="n">A</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.31</span>
+</pre></div>
+</div>
+<p><strong>Unsupported HTTP Method:</strong> PUT, POST, DELETE</p>
+</div>
+</div>
+<div class="section" id="licensing-uniteme-only">
+<h2>Licensing (Uniteme only)<a class="headerlink" href="#licensing-uniteme-only" title="Permalink to this headline">¶</a></h2>
+<p><strong>Resource URI:</strong> /api/license</p>
+<p><strong>Default Resource Properties</strong> N/A</p>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<div class="section" id="view-license-information">
+<h3>View license information<a class="headerlink" href="#view-license-information" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves the current license file.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.14/sipxconfig/api/license/</span>
+<span class="p">{</span><span class="s2">&quot;uid&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;domain&quot;</span><span class="p">:</span><span class="s2">&quot;home.mattkeys.net&quot;</span><span class="p">,</span><span class="s2">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;expire&quot;</span><span class="p">:</span><span class="s2">&quot;03-Jan-2026&quot;</span><span class="p">,</span><span class="s2">&quot;support&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;licenseType&quot;</span><span class="p">:</span><span class="s2">&quot;Deprecated OpenUC Reach&quot;</span><span class="p">,</span><span class="s2">&quot;users&quot;</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;mobileDevices&quot;</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;company&quot;</span><span class="p">:</span><span class="s2">&quot;Matts Lab&quot;</span><span class="p">,</span><span class="s2">&quot;contactEmail&quot;</span><span class="p">:</span><span class="s2">&quot;mkeys@email.domain&quot;</span><span class="p">,</span><span class="s2">&quot;contactName&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;contactPhone&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-license-uid">
+<h3>Modify license UID<a class="headerlink" href="#modify-license-uid" title="Permalink to this headline">¶</a></h3>
+<p>Set the universal ID of the license.</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> POST</dt>
+<dd>Used to update the license UID</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X POST https://superadmin:12345678@10.4.0.103/sipxconfig/api/license/508316691110519</span>
+<span class="p">{</span><span class="s2">&quot;uid&quot;</span><span class="p">:</span><span class="s2">&quot;508316691110519&quot;</span><span class="p">,</span><span class="s2">&quot;domain&quot;</span><span class="p">:</span><span class="s2">&quot;gabi.test&quot;</span><span class="p">,</span><span class="s2">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;19.08&quot;</span><span class="p">,</span><span class="s2">&quot;expire&quot;</span><span class="p">:</span><span class="s2">&quot;31-Dec-2039&quot;</span><span class="p">,</span><span class="s2">&quot;support&quot;</span><span class="p">:</span><span class="s2">&quot;31-Dec-2039&quot;</span><span class="p">,</span><span class="s2">&quot;licenseType&quot;</span><span class="p">:</span><span class="s2">&quot;Subscription&quot;</span><span class="p">,</span><span class="s2">&quot;users&quot;</span><span class="p">:</span><span class="mi">500</span><span class="p">,</span><span class="s2">&quot;mobileDevices&quot;</span><span class="p">:</span><span class="mi">500</span><span class="p">,</span><span class="s2">&quot;company&quot;</span><span class="p">:</span><span class="s2">&quot;developers&quot;</span><span class="p">,</span><span class="s2">&quot;contactEmail&quot;</span><span class="p">:</span><span class="s2">&quot;martin.harcar@ezuce.com&quot;</span><span class="p">,</span><span class="s2">&quot;contactName&quot;</span><span class="p">:</span><span class="s2">&quot;martin&quot;</span><span class="p">,</span><span class="s2">&quot;contactPhone&quot;</span><span class="p">:</span><span class="s2">&quot;454614465465&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Unsupported HTTP Method:</strong> PUT, DELETE</p>
+</div>
+</div>
+<div class="section" id="gateways">
+<h2>Gateways<a class="headerlink" href="#gateways" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="view-all-gateways">
+<h3>View all gateways<a class="headerlink" href="#view-all-gateways" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /api/gateways</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is prepresented by the following properties when the GET request is performed.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>id</em></td>
+<td>Gateway unique identification number.</td>
+</tr>
+<tr class="row-odd"><td><em>name</em></td>
+<td>Gateway name.</td>
+</tr>
+<tr class="row-even"><td><em>description</em></td>
+<td>Short description provided by the user.</td>
+</tr>
+<tr class="row-odd"><td><em>model</em></td>
+<td>The model of the gateway.</td>
+</tr>
+<tr class="row-even"><td><em>enabled</em></td>
+<td>Displays <strong>true</strong> if enabled, <strong>false</strong> if it is disabled.</td>
+</tr>
+<tr class="row-odd"><td><em>address</em></td>
+<td>The gateway IP or FQDN address.</td>
+</tr>
+<tr class="row-even"><td><em>addressPort</em></td>
+<td>The gateway port number.</td>
+</tr>
+<tr class="row-odd"><td><em>outboundPort</em></td>
+<td>The gateway outbound port number.</td>
+</tr>
+<tr class="row-even"><td><em>addressTransport</em></td>
+<td>The transport protocol to use.</td>
+</tr>
+<tr class="row-odd"><td><em>shared</em></td>
+<td>Displays <strong>true</strong> if enabled, <strong>false</strong> if it is not shared.</td>
+</tr>
+<tr class="row-even"><td><em>useInternalBridge</em></td>
+<td>Displays <strong>true</strong> if using sipxbridge, <strong>false</strong> if it is not.</td>
+</tr>
+<tr class="row-odd"><td><em>anonymous</em></td>
+<td>Displays <strong>true</strong> if caller ID is blocked, <strong>false</strong> if it is not.</td>
+</tr>
+<tr class="row-even"><td><em>ignoreUserInfo</em></td>
+<td>Displays <strong>true</strong> if ‘ignore user caller id’ is enabled, <strong>false</strong> if it is not.</td>
+</tr>
+<tr class="row-odd"><td><em>transformUserExtensions</em></td>
+<td>Displays <strong>true</strong> if ‘transform extension’ is enabled, <strong>false</strong> if it is not.</td>
+</tr>
+<tr class="row-even"><td><em>keepDigits</em></td>
+<td>Number of ext digits that are kept before adding the caller ID prefix.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves all the gateways defined.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.31/sipxconfig/api/gateways</span>
+<span class="p">{</span><span class="s2">&quot;gateways&quot;</span><span class="p">:[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;my_siptrunk&quot;</span><span class="p">,</span><span class="s2">&quot;serialNo&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;deviceVersion&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;DIDs 4235550000 through 4235551000&quot;</span><span class="p">,</span><span class="s2">&quot;model&quot;</span><span class="p">:{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;sipTrunkStandard&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;SIP trunk&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">},</span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;192.168.1.14&quot;</span><span class="p">,</span><span class="s2">&quot;addressPort&quot;</span><span class="p">:</span><span class="mi">5060</span><span class="p">,</span><span class="s2">&quot;outboundAddress&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;outboundPort&quot;</span><span class="p">:</span><span class="mi">5060</span><span class="p">,</span><span class="s2">&quot;addressTransport&quot;</span><span class="p">:</span><span class="s2">&quot;tcp&quot;</span><span class="p">,</span><span class="s2">&quot;prefix&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;shared&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;useInternalBridge&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;branch&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;callerAliasInfo&quot;</span><span class="p">:{</span><span class="s2">&quot;defaultCallerAlias&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;anonymous&quot;</span><span class="p">:</span><span class="n">false</span><span class="p">,</span><span class="s2">&quot;ignoreUserInfo&quot;</span><span class="p">:</span><span class="n">false</span><span class="p">,</span><span class="s2">&quot;transformUserExtension&quot;</span><span class="p">:</span><span class="n">false</span><span class="p">,</span><span class="s2">&quot;addPrefix&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;keepDigits&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;displayName&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;urlParameters&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">}}]}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filter-gateways-by-model">
+<h3>Filter gateways by model<a class="headerlink" href="#filter-gateways-by-model" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /api/gateways/models</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>modelId</em></td>
+<td>Gateway model.</td>
+</tr>
+<tr class="row-odd"><td><em>label</em></td>
+<td>Gateway label.</td>
+</tr>
+<tr class="row-even"><td><em>vendor</em></td>
+<td>Gateway model vendor.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves all gateway models available in the database.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.31/sipxconfig/api/gateways/models</span>
+<span class="p">{</span><span class="s2">&quot;models&quot;</span><span class="p">:[{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;acmeGatewayStandard&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Acme 1000&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="s2">&quot;acme&quot;</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">},{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;audiocodesMP1X4_4_FXO&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes MP114 FXO&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes&quot;</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:[</span><span class="s2">&quot;audiocodes6.0&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.8&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.6&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.4&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.2&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.0&quot;</span><span class="p">]},{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;audiocodesMP1X8_8_FXO&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes MP118 FXO&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes&quot;</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:[</span><span class="s2">&quot;audiocodes6.0&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.8&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.6&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.4&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.2&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.0&quot;</span><span class="p">]},{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;audiocodesMediant1000&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes Mediant 1000 PRI&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes&quot;</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:[</span><span class="s2">&quot;audiocodes6.0&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.8&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.6&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.4&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.2&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.0&quot;</span><span class="p">]},{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;audiocodesMediant2000&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes Mediant 2000 PRI&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes&quot;</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:[</span><span class="s2">&quot;audiocodes6.0&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.8&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.6&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.4&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.2&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.0&quot;</span><span class="p">]},{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;audiocodesMediant3000&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes Mediant 3000 PRI&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes&quot;</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:[</span><span class="s2">&quot;audiocodes6.0&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.8&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.6&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.4&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.2&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.0&quot;</span><span class="p">]},{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;audiocodesMediantBRI&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes Mediant 1000 BRI&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes&quot;</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:[</span><span class="s2">&quot;audiocodes6.0&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.8&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.6&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.4&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.2&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.0&quot;</span><span class="p">]},{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;audiocodesTP260&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes TP260&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="s2">&quot;AudioCodes&quot;</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:[</span><span class="s2">&quot;audiocodes6.0&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.8&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.6&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.4&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.2&quot;</span><span class="p">,</span><span class="s2">&quot;audiocodes5.0&quot;</span><span class="p">]},{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;genericGatewayStandard&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;Unmanaged gateway&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">},{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;sipTrunkStandard&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;SIP trunk&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">}]}</span>
+</pre></div>
+</div>
+<p><strong>Unsupported HTTP Method:</strong> PUT, POST, DELETE</p>
+</div>
+<div class="section" id="view-or-modify-gateway-id">
+<h3>View or modify gateway ID<a class="headerlink" href="#view-or-modify-gateway-id" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /gateways/{gatewayId}</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed:</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>gateway</em></td>
+<td>The gateway related inforamtion is the same as the /gateways resource.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves information on the gateway with the specified ID.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl -k -X GET https://superadmin:password@192.168.1.31/sipxconfig/api/gateways/1</span>
+<span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;my_siptrunk&quot;</span><span class="p">,</span><span class="s2">&quot;serialNo&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;deviceVersion&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;DIDs 4235550000 through 4235551000&quot;</span><span class="p">,</span><span class="s2">&quot;model&quot;</span><span class="p">:{</span><span class="s2">&quot;modelId&quot;</span><span class="p">:</span><span class="s2">&quot;sipTrunkStandard&quot;</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;SIP trunk&quot;</span><span class="p">,</span><span class="s2">&quot;vendor&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;versions&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">},</span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;192.168.1.14&quot;</span><span class="p">,</span><span class="s2">&quot;addressPort&quot;</span><span class="p">:</span><span class="mi">5060</span><span class="p">,</span><span class="s2">&quot;outboundAddress&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;outboundPort&quot;</span><span class="p">:</span><span class="mi">5060</span><span class="p">,</span><span class="s2">&quot;addressTransport&quot;</span><span class="p">:</span><span class="s2">&quot;tcp&quot;</span><span class="p">,</span><span class="s2">&quot;prefix&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;shared&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;useInternalBridge&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;branch&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;callerAliasInfo&quot;</span><span class="p">:{</span><span class="s2">&quot;defaultCallerAlias&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;anonymous&quot;</span><span class="p">:</span><span class="n">false</span><span class="p">,</span><span class="s2">&quot;ignoreUserInfo&quot;</span><span class="p">:</span><span class="n">false</span><span class="p">,</span><span class="s2">&quot;transformUserExtension&quot;</span><span class="p">:</span><span class="n">false</span><span class="p">,</span><span class="s2">&quot;addPrefix&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;keepDigits&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;displayName&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="s2">&quot;urlParameters&quot;</span><span class="p">:</span><span class="n">null</span><span class="p">}}</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> PUT</dt>
+<dd>Updates the gateway with the specified ID. Uses the same XML as for creation.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> POST</dt>
+<dd>Creates a new gateway with the specified ID.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bar</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> DELETE</dt>
+<dd>Removes the gateway specified by ID.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span>
+</pre></div>
+</div>
+<p><strong>Unsupported HTTP Method:</strong> N/A</p>
+</div>
+<div class="section" id="view-all-settings-of-a-gateway-id">
+<h3>View all settings of a gateway ID<a class="headerlink" href="#view-all-settings-of-a-gateway-id" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /api/gateways/{gatewayId}/settings</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed:</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>path</em></td>
+<td>Path to the setting.</td>
+</tr>
+<tr class="row-odd"><td><em>type</em></td>
+<td>Setting type. Possible options are <strong>string</strong>, <strong>boolean</strong>, or <strong>enum</strong>.</td>
+</tr>
+<tr class="row-even"><td><em>options</em></td>
+<td>Available setting options.</td>
+</tr>
+<tr class="row-odd"><td><em>value</em></td>
+<td>The current selected option of the setting.</td>
+</tr>
+<tr class="row-even"><td><em>label</em></td>
+<td>Setting label.</td>
+</tr>
+<tr class="row-odd"><td><em>description</em></td>
+<td>Short description provided by the user.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieves settings for the specified phone models in the gateway ID.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bar</span>
+</pre></div>
+</div>
+<p><strong>Unsupported HTTP Method:</strong> PUT, POST, DELETE</p>
+</div>
+<div class="section" id="view-or-modify-a-setting-for-phone-models-in-a-gateway-id">
+<h3>View or modify a setting for phone models in a gateway ID<a class="headerlink" href="#view-or-modify-a-setting-for-phone-models-in-a-gateway-id" title="Permalink to this headline">¶</a></h3>
+<p><strong>Resource URI:</strong> /api/gateways/{gatewayId}/settings/{path:.*}</p>
+<dl class="docutils">
+<dt><strong>Default Resource Properties</strong></dt>
+<dd>The resource is represented by the following properties when the GET request is performed.</dd>
+</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Property</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><em>gateway</em></td>
+<td>The gateway related information is the same as the /gateways/{gatewayId} resource.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Specific Response Codes:</strong> N/A</p>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> GET</dt>
+<dd>Retrieve the setting specified in the path for the phone models in the gateway ID.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> PUT</dt>
+<dd>Updates the setting specified in the path for the phone models in the gateway ID. PUT data is plain text.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bar</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><strong>HTTP Method:</strong> DELETE</dt>
+<dd>Deletes the setting specified in the path for the phone models in the gateway ID.</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span>
+</pre></div>
+</div>
+<p><strong>Unsupported HTTP Method:</strong> POST</p>
+</div>
+<div class="section" id="view-port-settings-for-a-gateway-id">
+<h3>View port settings for a gateway ID<a class="headerlink" href="#view-port-settings-for-a-gateway-id" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/sipxcom_logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">REST API</a><ul>
+<li><a class="reference internal" href="#auto-attendant-aa">Auto Attendant (AA)</a><ul>
+<li><a class="reference internal" href="#view-aa-list">View AA List</a></li>
+<li><a class="reference internal" href="#view-or-modify-aa-special-mode">View or modify AA special mode</a></li>
+<li><a class="reference internal" href="#setting-an-aa-in-special-mode">Setting an AA in special mode</a></li>
+<li><a class="reference internal" href="#enable-an-aa">Enable an AA</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#branch">Branch</a><ul>
+<li><a class="reference internal" href="#view-or-modify-branches">View or modify branches</a></li>
+<li><a class="reference internal" href="#view-or-modify-a-branch-id">View or modify a branch ID</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dns">DNS</a><ul>
+<li><a class="reference internal" href="#view-dns-settings">View DNS settings</a></li>
+<li><a class="reference internal" href="#view-dns-settings-from-path">View DNS settings from path</a></li>
+<li><a class="reference internal" href="#view-dns-advisor-results">View DNS Advisor results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#licensing-uniteme-only">Licensing (Uniteme only)</a><ul>
+<li><a class="reference internal" href="#view-license-information">View license information</a></li>
+<li><a class="reference internal" href="#modify-license-uid">Modify license UID</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gateways">Gateways</a><ul>
+<li><a class="reference internal" href="#view-all-gateways">View all gateways</a></li>
+<li><a class="reference internal" href="#filter-gateways-by-model">Filter gateways by model</a></li>
+<li><a class="reference internal" href="#view-or-modify-gateway-id">View or modify gateway ID</a></li>
+<li><a class="reference internal" href="#view-all-settings-of-a-gateway-id">View all settings of a gateway ID</a></li>
+<li><a class="reference internal" href="#view-or-modify-a-setting-for-phone-models-in-a-gateway-id">View or modify a setting for phone models in a gateway ID</a></li>
+<li><a class="reference internal" href="#view-port-settings-for-a-gateway-id">View port settings for a gateway ID</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="maintenance.html"
+                        title="previous chapter">Maintenance</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/rest.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="maintenance.html" title="Maintenance"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">sipxcom 20.04 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Support Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

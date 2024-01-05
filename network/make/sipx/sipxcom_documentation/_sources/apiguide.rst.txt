@@ -1,0 +1,125 @@
+.. index:: APIs
+
+=================
+API Documentation
+=================
+
+At the heart of the platform are an extensive collection of REST and SOAP web service APIs that enable developers to customize the user experience, or build new applications and integrations.
+
+Overview
+--------
+A number of APIs have been implemented to facilitate customization in the following areas.
+
+Configuration APIs
+
+  * Phones
+  * Phone groups 
+  * Gateways
+  * IVR
+  * DNS
+  * Message Waiting Indication (MWI)
+  * SIP Registrar
+  * Registrations
+  * Page groups
+  * Park orbits
+  * SIP Proxy
+  * My Buddy
+  * Shared Appearance Agent (SAA)
+  * REST service
+  * Schedules
+
+Communication APIs
+
+  * Dial Plan
+
+Diagnostics APIs
+
+  * Call Detail Records (CDR)
+  * Servers
+
+Enhanced E911 Functionality
+
+  * The E911 functionality has been enhanced to provide user location of 911 callers.
+
+
+REST API Overview
+-----------------
+
+RESTlet is the framework used by sipxconfig for exposing the RESTful API. The server utilizes the Apache Axis framework for the SOAP API.
+
+About REST
+~~~~~~~~~~
+
+REST (acronym for **RE**presentational **S**tate **T**ransfer) represents a new approach to systems architecture and a lightweight alternative to web services. Through the REST API you can retrieve information about an instance or make configuration changes. Requests are implemented with standard HTTP methods:
+
+  * GET to read
+  * PUT to create
+  * POST to update
+  * DELETE to delete
+
+**The REST API is served over HTTPS only to ensure data privacy.**
+
+REST base URL
+~~~~~~~~~~~~~
+
+The base URL for the configuration API is the following::
+
+  https://host.domain/sipxconfig/rest/
+
+Using REST with cURL
+~~~~~~~~~~~~~~~~~~~~
+
+Example of how to print the content of a phonebook named 'sales' to standard CSV output::
+
+  curl --insecure --basic -u superadmin https://host.domain/sipxconfig/rest/phonebook/sales
+
+Example of placing a call:
+
+  curl --insecure -X PUT https://userid:password@host.domain/sipxconfig/rest/call/{phonenumber}
+
+The HTTP **PUT** to the service URL indicates sipxconfig should place a call to {phonenumber}. The call can only be placed with authorized user credentials. It works in the same was as the click-to-call functionality in the User Portal. The user phone will ring first, then when answered the system places a call to {phonenumber}, then connects those two calls together. The SIP signaling is similar to a consultative/attended transfer.
+
+SOAP API Overview
+-----------------
+
+About SOAP
+~~~~~~~~~~
+
+The SOAP API enables administrators to perform a variety of functions offered by sipxconfig, but without the need to directly interacting with the sipxconfig webui.
+
+SOAP base URL
+~~~~~~~~~~~~~
+
+The base URL for the configuration API is the following::
+
+  https://host.domain/sipxconfig/services/
+
+Using SOAP Services
+~~~~~~~~~~~~~~~~~~~
+
+A few example use cases for the SOAP APIs would be:
+
+  * You can integrate the sipxcom functionality with your company IT infrastrucutre (intranet)
+  * You can automate or script processes such as adding or importing users, updating phones, assigning phones to groups, and much more.
+  * You can customize the sipxconfig webui to suit your needs.
+
+You can use SOAP with WDSL, which is a formal API definition, and generate bindings in your preferred programming language such as Python, Perl, Ruby, Java, and others. It is recommended to select a programming language with good SOAP client support.
+
+  * Ruby - from the WSDL you can use the `SOAP4R project <https://rubygems.org/gems/soap4r/versions/1.5.8>`_ to build client bindings.
+  * Perl - Install `SOAP for Perl <https://metacpan.org/pod/SOAP::Lite>`_ with:: 
+
+  perl -MCPAN -e 'install SOAP::lite'
+
+  * Command Line - Use the following command::
+
+  java -jar $WsdlDocDir/wsdldoc.jar {color}
+  -title "sipXconfig SOAP API v3.2" {color}
+  -dir `pwd`"/ws-api-3.2" {color}
+  http://sipXcom.sipfoundry.org/rep/sipXcom/main/sipXconfig/web/src/org/sipfoundry/sipxconfig/api/sipxconfig.wsdl
+
+
+OpenFire APIs
+~~~~~~~~~~~~~
+
+Openfire is a cross platform realtime communication server project based on the XMPP (Jabber) protocol developed by `Ignite Realtime https://www.igniterealtime.org/>`_. The `OpenFire REST API documentation <https://www.igniterealtime.org/projects/openfire/plugins/1.2.2/restAPI/readme.html>`_ is available on their site.
+

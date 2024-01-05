@@ -1,0 +1,30 @@
+Diagnostics
+===========
+
+About
+-----
+
+Alarms
+------
+
+Banned Hosts
+------------
+
+Call Detail Records
+-------------------
+
+Job Status
+----------
+
+Registrations
+-------------
+
+SIP Trunk Statistics
+--------------------
+
+Snapshot
+--------
+
+System Audit
+------------
+
