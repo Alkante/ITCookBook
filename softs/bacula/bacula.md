@@ -1,12 +1,10 @@
 # Bacula
 
-
-
-## File,Job,Volume Retention
-- File Retention : Uniquement en BDD. Enregistre le détails des fichiers sauvegarder.
+## File, Job, Volume Retention
+- _File Retention_ : Uniquement en BDD. Enregistre le détail des fichiers sauvegardés.
     Si autoprune alors suppression des données en BDD après cette date
-- Job Retention : Même chose que file retention mais pour les jobs
-- Volume Retention : Sur le disque. S'il y a plus de place sur le disque alors bacula supprime les volumes après cette date
+- _Job Retention_ : Même chose que _file retention_ mais pour les jobs
+- _Volume Retention_ : Sur le disque. S'il n'y a plus de place sur le disque alors bacula supprime les volumes après cette date
 
 # query batch bconsole
 
@@ -112,7 +110,6 @@ select VolumeName,MediaType,VolStatus,Recycle from Media where VolumeName like '
 
 Supprimer un volume qui n'existe pas sur disque :
 
-
 ```sql
 delete from Media where VolumeName = 'vm4-Full-1288';
 ```
@@ -134,6 +131,7 @@ https://www.bacula.org/5.2.x-manuals/en/main/main/Automatic_Volume_Recycling.htm
 
 
 # Nettoyage du Catalog (base MySQL)
+
 Bacula ne fait pas de purge globale dès que les volumes dépassent la durée de rétention, le director de fait que marquer les devices comme réutilisables et les réutilise un par un : Si il y a trop de volumes pour un client il faut obligatoirement faire du ménage à la main sur le storage ET dans la base.
 
 Dans la base :
@@ -149,7 +147,7 @@ Supprimer tous les volumes d'un client sauf certains (un Filexx = un client, dan
 delete from Media where MediaType='File0' and VolumeName not in ('BackupCatalog-Full-20614','BackupCatalog-Full-20616','BackupCatalog-Full-6274','BackupCatalog-Full-6276','BackupCatalog-Full-21665');
 ```
 
-Supprimer en fonction du VolStatus :
+Supprimer en fonction du `VolStatus` :
 
 ```sql
 delete from Media where MediaType='File0' and VolStatus='Read-Only';
@@ -162,6 +160,7 @@ delete from Media where VolumeName in ('BackupCatalog-Full-21286','BackupCatalog
 ```
 
 # Suppression de volumes facile - commande bacularm
+
 Cette commande est un script en deux parties (à lancer depuis le storage):
 - le director supprime l'entrée dans le catalog
 - le storage supprime le fichier
