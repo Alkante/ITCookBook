@@ -741,6 +741,11 @@ SELECT pg_database.datname,
   ORDER BY pg_database_size DESC;
 ```
 
+Gagner de la place avec un vacuum (attention lock la bdd):
+```bash
+vacuumdb -a -f -F -z
+```
+
 ### Taille d'un schéma
 ```SQL
 SELECT schema_name,
