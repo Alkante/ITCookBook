@@ -548,7 +548,8 @@ openssl pkcs12 -in fd.p12 -nokeys -cacerts -out fd-chain.crt
 
 
 ## Remote openssl
-Le principe des de lancer les commandes ssl à distance sur un serveur ayant authorité
+
+Le principe est de lancer les commandes SSL à distance sur un serveur faisant autorité.
 
 
 ### Commandes usuelles
