@@ -1,7 +1,13 @@
-# Chiffrement disque sur windows : bitlocker
-Par défaut il stock le clé de déchiffrement dans le materiel appelé TPM. Il se peut qu'il soit désactiver dans le BIOS
+# Chiffrement disque sur Windows : BitLocker
+
+Par défaut il conserve le clé de déchiffrement dans le matériel appelé TPM. Il se peut qu'il soit désactivé dans le BIOS.
+
+## Support : il redemande la « clé de récupération » pour redémarrer
+
+Ça arrive parfois après des mises à jour du noyau. La clef est dans Passbolt.
 
 ## Mot de passe au lieu de clé
+
 Modifier la stratégie de groupe :
 - Configuration ordinateur
 - Modèles d'administration
