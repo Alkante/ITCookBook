@@ -107,3 +107,20 @@ usermod -aG audio toto
 ```bash
 usermod -d /home/titi -m -l titi toto
 ```
+
+
+## Change user ID of a desktop user (with /home directory and user mounts in /media)
+```bash
+usermod -u UID myuser
+chown -R myuser /home/myuser
+cat <<EOF >/tmp/acl
+user::rwx
+user:myuser:r-x
+group::---
+mask::r-x
+other::---
+
+EOF
+
+setfacl --set-file=/tmp/acl /media/myuser
+```
