@@ -171,3 +171,41 @@ Cette commande est un script en deux parties (à lancer depuis le storage):
 ```bash
 for id in $(echo "status dir" | bconsole | awk '/Back Incr.*waiting/ {print $1}') ; do echo "cancel jobid=$id" ; done | bconsole
 ```
+
+# Extraction d'archive sans service bacula
+Utilisation du binaire "bextract", pour l'installer :
+```bash
+apt install bacula-sd
+systemctl stop bacula-sd
+systemctl disable bacula-sd
+```
+
+Exemple avec une machine "debian1" :
+
+Construction d'un fichier bacula-sd.conf
+```
+Device {
+    Name = VM
+    Media Type = File0
+    Archive Device = .
+}
+Storage {
+    Name = Storage
+    WorkingDirectory = "."
+    PidDirectory = "."
+}
+```
+Si on prends l'exemple d'une chaîne d'un Full, un Differential et deux Incremental :
+```
+51080 -rw-r----- 1 bacula tape 52302236  5 mai   12:05 debian1-Full-1792
+25436 -rw-r----- 1 bacula tape 26043580 19 mai   01:58 debian1-Differential-935
+25424 -rw-r----- 1 bacula tape 26034135 21 mai   01:58 debian1-Incremental-891
+25424 -rw-r----- 1 bacula tape 26034135 22 mai   01:58 debian1-Incremental-963
+```
+Lancement de la restauration dans un dossier "debian1":
+```bash
+bextract -c ./bacula-sd.conf ./debian1-Full-1792 ./debian1
+bextract -c ./bacula-sd.conf ./debian1-Differential-935 ./debian1
+bextract -c ./bacula-sd.conf ./debian1-Incremental-891 ./debian1
+bextract -c ./bacula-sd.conf ./debian1-Incremental-963 ./debian1
+```
