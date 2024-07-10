@@ -167,3 +167,41 @@ zfs get sharenfs pool01/client02
 NAME             PROPERTY  VALUE                                  SOURCE
 pool01/client02  sharenfs  rw=@192.168.20.0/29,rw=@10.504.0.0/16  local
 ```
+
+## Replace
+Création de la partition (exmple ici avec sdb)
+```bash
+gdisk /dev/sdb
+```
+Statut avant :
+```bash
+zpool status
+```
+```
+NAME                                         STATE     READ WRITE CKSUM
+pool01                                       DEGRADED     0     0     0
+  mirror-0                                   ONLINE       0     0     0
+    ata-XXXXXXXXXXXXXXXX-part1               ONLINE       0     0     0
+    ata-YYYYYYYYYYYYYYYY-part1               ONLINE       0     0     0
+  mirror-1                                   DEGRADED     0     0     0
+    ata-ZZZZZZZZZZZZZZZZ-part1               ONLINE       0     0     0
+    1111111111111111111                      UNAVAIL      0     0     0  was /dev/disk/by-id/ata-WWWWWWWWWWWWWWWW-part1
+```
+Remplacer le disque zfs :
+```bash
+ls -al /dev/disk/by-id |grep sdb # get ata-VVVVVVVVVVVVVVVV-part1
+zpool replace -f pool01 1111111111111111111 /dev/disk/by-id/ata-VVVVVVVVVVVVVVVV-part1
+zpool status
+```
+```
+NAME                                           STATE     READ WRITE CKSUM
+pool01                                         DEGRADED     0     0     0
+  mirror-0                                     ONLINE       0     0     0
+    ata-XXXXXXXXXXXXXXXX-part1                 ONLINE       0     0     0
+    ata-YYYYYYYYYYYYYYYY-part1                 ONLINE       0     0     0
+  mirror-1                                     DEGRADED     0     0     0
+    ata-ZZZZZZZZZZZZZZZZ-part1                 ONLINE       0     0     0
+    replacing-1                                DEGRADED     0     0     0
+      1111111111111111111                      UNAVAIL      0     0     0  was /dev/disk/by-id/ata-WWWWWWWWWWWWWWWW-part1
+      ata-VVVVVVVVVVVVVVVV-part1               ONLINE       0     0     0  (resilvering)
+```
