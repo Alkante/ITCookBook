@@ -35,6 +35,10 @@ Autre solution dans le fichier : /etc/NetworkManager/conf.d/duid.conf
 [DHCP]
 ipv6.dhcp-duid=stable-llt
 ```
+- stable-uuid (RFC 6355): generated from an Universally Unique IDentifier (UUID).
+- stable-ll (RFC 3315): generated from the Link-Layer address (aka MAC address).
+- stable-llt (RFC 3315): generated from the Link-Layer address plus a timestamp.
+Source : https://wiki.archlinux.org/title/NetworkManager
 
 ### Redémarrer la connexion pour refaire une demande DHCPv6, en débranchant le câble ou via nmcli :
 ```
