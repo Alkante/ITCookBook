@@ -15,9 +15,9 @@ Pour cela :
 nmcli con show
 NAME             UUID                                  TYPE      DEVICE          
 DHCP             64191c1b-2942-34f1-a023-c4f741ffad36  ethernet  enp1s0f1        
-br-685517cdfbd7  20f7397e-c1aa-423f-af4d-6a5f183bdcf0  bridge    br-685517cdfbd7 
-br-7af0cb32d17b  4b0673da-3a04-4ba1-bd88-609d556bd415  bridge    br-7af0cb32d17b 
-br-a80dbbc90405  c7a26bf4-81ce-4d16-8190-f391da38574b  bridge    br-a80dbbc90405 
+br-685517cdfbd7  20f7397e-c1aa-423f-af4d-6a5f183bdcf0  bridge    br-685517cdfbd7
+br-7af0cb32d17b  4b0673da-3a04-4ba1-bd88-609d556bd415  bridge    br-7af0cb32d17b
+br-a80dbbc90405  c7a26bf4-81ce-4d16-8190-f391da38574b  bridge    br-a80dbbc90405
 docker0          d4e712c8-5856-43b0-882c-ee0ed2621378  bridge    docker0         
 reseauwifi       9c1d9743-5470-445c-a572-382d2c4ac5bf  wifi      --     
 
@@ -30,7 +30,11 @@ nmcli con edit DHCP
 set ipv6.duid stable-ll
 save
 ```
-
+Autre solution dans le fichier : /etc/NetworkManager/conf.d/duid.conf
+```
+[DHCP]
+ipv6.dhcp-duid=stable-llt
+```
 
 ### Redémarrer la connexion pour refaire une demande DHCPv6, en débranchant le câble ou via nmcli :
 ```
