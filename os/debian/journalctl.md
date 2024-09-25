@@ -119,7 +119,7 @@ journalctl -u 'postfix*'
 
 Récupérer la liste :
 ```bash
-journalctl --field _SYSTEMD_UNIT |grep -v session
+systemctl list-unit-files --all |grep ldap
 ```
 
 ## Consultation de log avec une date
