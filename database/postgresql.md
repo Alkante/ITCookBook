@@ -551,6 +551,7 @@ Options importantes :
 | ```pg_dump -C -F custom database1 -f file.dmp``` |```pg_restore -v -C -d postgres file.dmp```| Avec création de base de données |
 | ```pg_dump -C -F custom database1 -f file.dmp``` |```pg_restore -v -C -s -d postgres file.dmp; pg_restore -v -a --disable-triggers -d <database> file.dmp```| Avec création de base de données (structure + data) |
 | ```pg_dump -F custom -t MonSchema.MaTable -f file.dump MaDatabase``` | ```pg_restore -d MaDatabase file.dump``` | Exporte une seule table. Pour l'import,il faut supprimer la table si elle existe. |
+| ```pg_dumpall -f all.sql``` | ```psql -f all.sql``` | Export de tout. Cas utile lors de postgres avec réplication, pour l'import dans le slave |
 
 
 Autre exemple :
@@ -576,11 +577,15 @@ psql
 REASSIGN OWNED BY user_prod to user_qualif;
 ```
 
-### export TOUT
+### export des roles/droits/tabalespace sans la data
 ```bash
 pg_dumpall -h localhost -p 5432 -v --globals-only > /tmp/users.dmp
 ```
 
+### export de tout
+```bash
+pg_dumpall -h localhost -p 5432 -v > /tmp/dumpall.dmp
+```
 
 ### export
 ```bash
