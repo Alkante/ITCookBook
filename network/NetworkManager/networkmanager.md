@@ -27,17 +27,17 @@ reseauwifi       9c1d9743-5470-445c-a572-382d2c4ac5bf  wifi      --
 ### Modifier la connexion concernée :
 ```
 nmcli con edit DHCP
-set ipv6.duid stable-ll
+set ipv6.dhcp.duid stable-ll
 save
 ```
-Autre solution dans le fichier : /etc/NetworkManager/conf.d/duid.conf
+Autre solution dans le fichier : /etc/NetworkManager/system-connections/DHCP.nmconnection
 ```
-[DHCP]
-ipv6.dhcp-duid=stable-llt
+[ipv6]
+dhcp-duid=stable-llt
 ```
-- stable-uuid (RFC 6355): generated from an Universally Unique IDentifier (UUID).
-- stable-ll (RFC 3315): generated from the Link-Layer address (aka MAC address).
-- stable-llt (RFC 3315): generated from the Link-Layer address plus a timestamp.
+- stable-uuid (RFC 6355, id 4): generated from an Universally Unique IDentifier (UUID).
+- stable-ll (RFC 3315, id 3): generated from the Link-Layer address (aka MAC address).
+- stable-llt (RFC 3315, id 1): generated from the Link-Layer address plus a timestamp.
 Source : https://wiki.archlinux.org/title/NetworkManager
 
 ### Redémarrer la connexion pour refaire une demande DHCPv6, en débranchant le câble ou via nmcli :
