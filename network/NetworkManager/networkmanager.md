@@ -27,7 +27,7 @@ reseauwifi       9c1d9743-5470-445c-a572-382d2c4ac5bf  wifi      --
 ### Modifier la connexion concernée :
 ```
 nmcli con edit DHCP
-set ipv6.dhcp.duid stable-ll
+set ipv6.dhcp-duid stable-ll
 save
 ```
 Autre solution dans le fichier : /etc/NetworkManager/system-connections/DHCP.nmconnection
