@@ -561,8 +561,12 @@ Autre exemple :
 - restauration structure + data
 Attention, renvoie une erreur si la base n'existe pas car il ne peut pas la supprimer.
 
+Restaurer une seule table depuis un dump binaire (supprimer une table déjà exist):
+```bash
+pg_restore -v -U mon_user -n mon_schéma -t ma_table -d ma_bdd mon_fichier_dump.dmp
+```
 
-Attention, si la restoration crash, nessitez-pas à fair un `pg_restore --clean` pour netoyer.
+Attention, si la restoration crash, nessitez-pas à fair un `pg_restore --clean` pour nettoyer.
 
 ### Export prod vers qualif
 #### Sur la meme machine:
