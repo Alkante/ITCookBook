@@ -160,6 +160,21 @@ Change password admin
 ldappasswd -x -D "cn=admin,dc=example,dc=org" -w admin -a admin -s admin
 ```
 
+Change password config
+```bash
+docker exec -ti openldap bash
+LDAP_CONFIG_PASSWORD_SHA=`slappasswd -h {SHA} -s $LDAP_CONFIG_PASSWORD`
+cat << EOF > /tmp/reset_password.ldif
+dn: olcDatabase={0}config,cn=config
+changetype: modify
+replace: olcRootPW
+olcRootPW: $LDAP_CONFIG_PASSWORD_SHA
+EOF
+ldapmodify -Y EXTERNAL -H ldapi:/// -f /tmp/reset_password.ldif
+rm /tmp/reset_password.ldif
+exit
+```
+
 Decode userPassword with base64
 ```bash
 echo XXXXXXXXXXXXXXXXxx=|base64 -d
