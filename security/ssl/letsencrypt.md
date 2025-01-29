@@ -241,6 +241,25 @@ acme.sh --remove -d example.com
 ```bash
 rm -rf /etc/letsencrypt/app1.exemple.com
 ```
+
+### Certificat wildcard avec api ovh
+Création api ovh : https://api.ovh.com/createToken/?GET=/domain/zone/exemple.com/*&POST=/domain/zone/exemple.com/*&PUT=/domain/zone/exemple.com/*&GET=/domain/zone/exemple.com&DELETE=/domain/zone/exemple.com/record/*
+
+Sur Frt1
+```bash
+echo "
+SAVED_OVH_AK='app key'
+SAVED_OVH_AS='app secret'
+SAVED_OVH_CK='consumer key'
+" > /etc/letsencrypt/account.conf
+/etc/letsencrypt/acme.sh --home /etc/letsencrypt --server letsencrypt --issue -d wildcard.exemple.com -d '*.exemple.com' \
+--dns dns_ovh \
+--keylength 4096
+/etc/letsencrypt/acme.sh --home /etc/letsencrypt --install-cert -d wildcard.exemple.com \
+--fullchain-file /etc/ssl-cert/ssl.crt/wildcard.exemple.com.chain.crt  \
+--key-file       /etc/ssl-cert/ssl.key/wildcard.exemple.com.key  \
+--reloadcmd     "service apache2 force-reload"
+
 ## MAJ script `acme.sh`
 
 MAJ du code `acme` en précisant le dossier où il était installé :
