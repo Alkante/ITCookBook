@@ -166,6 +166,7 @@ cd acmesh-official-acme.sh-*
 #./acme.sh --upgrade --auto-upgrade
 cd ../
 rm -rf acmesh-official-acme.sh-*
+chmod 750 /etc/letsencrypt
 mkdir -p /home/www/nothing/.well-known/acme-challenge/
 ```
 
@@ -252,10 +253,10 @@ SAVED_OVH_AK='app key'
 SAVED_OVH_AS='app secret'
 SAVED_OVH_CK='consumer key'
 " > /etc/letsencrypt/account.conf
-/etc/letsencrypt/acme.sh --home /etc/letsencrypt --server letsencrypt --issue -d wildcard.exemple.com -d '*.exemple.com' \
+/etc/letsencrypt/acme.sh --home /etc/letsencrypt --server letsencrypt --issue -d '*.exemple.com' \
 --dns dns_ovh \
 --keylength 4096
-/etc/letsencrypt/acme.sh --home /etc/letsencrypt --install-cert -d wildcard.exemple.com \
+/etc/letsencrypt/acme.sh --home /etc/letsencrypt --install-cert \
 --fullchain-file /etc/ssl-cert/ssl.crt/wildcard.exemple.com.chain.crt  \
 --key-file       /etc/ssl-cert/ssl.key/wildcard.exemple.com.key  \
 --reloadcmd     "service apache2 force-reload"
