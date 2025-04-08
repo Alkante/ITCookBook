@@ -139,6 +139,11 @@ problème screen si on a fait, en root, su - user. Initialiser avant de lancer s
 script /dev/null
 ```
 
+### Remonter dans l'historique
+```
+CTRL-a échap
+```
+
 ### nettoyer le log de screen
 escape les retours charriots et les codes couleurs
 ```bash

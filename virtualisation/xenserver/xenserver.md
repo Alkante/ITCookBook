@@ -1291,7 +1291,7 @@ Permet de migrer une VM en CLI sans avoir besoin de 3x l'espace disque (mais né
 https://techblog.jeppson.org/2016/06/quickly-transfer-vms-xenserver-pools/
 
 ```bash
-xe vm-export uuid=$(xe vm-list name-label=vm1.exemple.com --minimal) filename= | ssh root@phy0047.exemple.com xe vm-import filename=/dev/stdin sr-uuid=1e3b2da0-e270-515a-92e9-b6460a2addd0
+xe vm-export uuid=$(xe vm-list name-label=vm1.exemple.com --minimal) filename= | ssh root@phy0047.exemple.com xe vm-import filename=/dev/stdin vm-name=vm1.exemple.com_COPY sr-uuid=1e3b2da0-e270-515a-92e9-b6460a2addd0
 ```
 Il est possible de suivre l'import/l'export avec `xe task-list` ou via Xen Orchestra
 
