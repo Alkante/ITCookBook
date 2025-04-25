@@ -224,7 +224,7 @@ GRANT CONNECT ON DATABASE schema TO user_read;
 \c database
 GRANT USAGE ON SCHEMA schema TO user_read;
 GRANT SELECT ON ALL TABLES IN SCHEMA schema TO user_read;
-ALTER DEFAULT PRIVILEGES IN SCHEMA schema GRANT SELECT ON TABLES TO user_read;
+ALTER DEFAULT PRIVILEGES FOR ROLE user_read IN SCHEMA schema GRANT SELECT ON TABLES TO user_read;
 ```
 
 ### Ajout user dans groupe
