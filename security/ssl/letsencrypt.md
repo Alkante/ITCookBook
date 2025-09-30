@@ -146,7 +146,7 @@ linuxfr : https://linuxfr.org/users/gouttegd/journaux/reparlons-de-let-s-encrypt
 
 ```bash
 cd /usr/local/src
-tags=$(wget -qO- "https://api.github.com/repos/Neilpang/acme.sh/tags")
+tags=$(wget -qO- "https://api.github.com/repos/acmesh-official/acme.sh/tags")
 offset=3
 line=$(echo -e "$tags"| head -n $offset |tail -n 1)
 while [[ "${line:13:1}" == "v" ]]; do
@@ -155,8 +155,8 @@ while [[ "${line:13:1}" == "v" ]]; do
 done
 version=${line:13:-2}
 echo "DL version : $version"
-echo "wget -q https://api.github.com/repos/Neilpang/acme.sh/tarball/$version -O acme.sh.tar.gz"
-wget -q https://api.github.com/repos/Neilpang/acme.sh/tarball/$version -O acme.sh.tar.gz
+echo "wget -q https://api.github.com/repos/acmesh-official/acme.sh/tarball/$version -O acme.sh.tar.gz"
+wget -q https://api.github.com/repos/acmesh-official/acme.sh/tarball/$version -O acme.sh.tar.gz
 tar -xvf acme.sh.tar.gz
 rm -rf acme.sh.tar.gz
 mkdir /etc/letsencrypt
@@ -186,10 +186,10 @@ NB : désormais `acme.sh` utilise les certificats `ZeroSSL` par défaut d'où le
 
 ```bash
 acme.sh --home /etc/letsencrypt --install-cert -d app1.exemple.com \
---cert-file /etc/apache2/ssl-cert/ssl.crt/app1.exemple.com.crt  \
---fullchain-file /etc/apache2/ssl-cert/ssl.crt/app1.exemple.com.chain.crt  \
---ca-file /etc/apache2/ssl-cert/ssl.ca/app1.exemple.com.ca  \
---key-file       /etc/apache2/ssl-cert/ssl.key/app1.exemple.com.key  \
+--cert-file /etc/ssl-cert/ssl.crt/app1.exemple.com.crt  \
+--fullchain-file /etc/ssl-cert/ssl.crt/app1.exemple.com.chain.crt  \
+--ca-file /etc/ssl-cert/ssl.ca/app1.exemple.com.ca  \
+--key-file       /etc/ssl-cert/ssl.key/app1.exemple.com.key  \
 --reloadcmd     "service apache2 force-reload"
 ```
 
@@ -198,8 +198,8 @@ acme.sh --home /etc/letsencrypt --install-cert -d app1.exemple.com \
 
 ```bash
 acme.sh --home /etc/letsencrypt --install-cert -d app1.exemple.com \
---fullchain-file /etc/apache2/ssl-cert/ssl.crt/app1.exemple.com.chain.crt  \
---key-file       /etc/apache2/ssl-cert/ssl.key/app1.exemple.com.key  \
+--fullchain-file /etc/ssl-cert/ssl.crt/app1.exemple.com.chain.crt  \
+--key-file       /etc/ssl-cert/ssl.key/app1.exemple.com.key  \
 --reloadcmd     "service apache2 force-reload"
 ```
 
@@ -210,8 +210,8 @@ le chemin est `/etc/ssl-cert/ssl.*` (sans `/apache2/`).
 
 ```bash
 acme.sh --home /etc/letsencrypt --install-cert -d app1.exemple.com \
---fullchain-file /etc/nginx/ssl-cert/ssl.crt/app1.exemple.com.chain.crt  \
---key-file       /etc/nginx/ssl-cert/ssl.key/app1.exemple.com.key  \
+--fullchain-file /etc/ssl-cert/ssl.crt/app1.exemple.com.chain.crt  \
+--key-file       /etc/ssl-cert/ssl.key/app1.exemple.com.key  \
 --reloadcmd     "service nginx force-reload"
 ```
 
