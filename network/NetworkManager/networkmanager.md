@@ -40,6 +40,14 @@ dhcp-duid=stable-llt
 - stable-llt (RFC 3315, id 1): generated from the Link-Layer address plus a timestamp.
 Source : https://wiki.archlinux.org/title/NetworkManager
 
+#### Fixer le duid
+Mise en place d'un duid spécifique (plus simple a gérer en cas de DHCP statique)
+```bash
+UUID=`uuidgen |tr -d - | sed 's/^..../0004/' | sed 's/../&:/g;s/:$//'`
+echo $UUID
+nmcli connection modify <votreconexion> ipv6.dhcp-duid $UUID
+```
+
 ### Redémarrer la connexion pour refaire une demande DHCPv6, en débranchant le câble ou via nmcli :
 ```
 nmcli con down DHCP
