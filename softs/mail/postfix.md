@@ -22,7 +22,7 @@ sed -i 's/^relayhost.*$/relayhost = smtp.exemple.com:25/' /etc/postfix/main.cf
 
 ## test envoi
 ```bash
-echo -e "From:etiquette@exemple.com\nSubject:subject\ntest" |  sendmail -v -freturnpath@astrollendro.exemple.com p.nom@exemple.com
+echo -e "From: etiquette@exemple.com\nSubject: subject\ntest" |  sendmail -v -freturnpath@astrollendro.exemple.com p.nom@exemple.com
 ```
 
 ## mailq
